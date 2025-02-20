@@ -3,16 +3,23 @@
 
 <div class="row">
     <div class="col">
-        <shared-search-box
+        <!-- <shared-search-box
             placeholder="por región"
             (onValue)="searchByRegion($event)"
-        ></shared-search-box>
+        ></shared-search-box> -->
+        <select class="form-control" (change)="searchByRegion($event)">
+            <option value="">Seleccione una region</option>
+            <option *ngFor="let region of regions"
+                [value]="region">{{ region }}
+            </option>
+        </select>
     </div>
 </div>
 
 <div class="row">
     <div class="col">
         <hr>
+        <shared-loading-spinner *ngIf="isLoading"></shared-loading-spinner>
         <countries-table [countries]="countries" ></countries-table>
     </div>
 </div>
